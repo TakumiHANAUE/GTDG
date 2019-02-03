@@ -1,3 +1,5 @@
+// Ploblem Reference: https://codingbat.com/prob/p117334
+
 public class stringSplosion {
     public static void main(String[] args)
     {
