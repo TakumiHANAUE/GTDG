@@ -116,7 +116,7 @@ public class Hangman {
         wordNum = this.random.nextInt(hangmanLexicon.getWordCount());
         try
         {
-            word = hangmanLexicon.getWord(/*wordNum*/0);
+            word = hangmanLexicon.getWord(wordNum);
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
