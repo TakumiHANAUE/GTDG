@@ -14,11 +14,15 @@ import java.awt.Color;
 
 public class HangmanCanvas extends Canvas {
     private int hangmanStep;
+    private String guessedWord;
+    private StringBuffer stringOfIncorrectChars;
 
     public void init()
     {
         // this.setSize(IMAGE_WIDTH, IMAGE_HEIGHT);
         this.hangmanStep = 0;
+        this.guessedWord = new String();
+        this.stringOfIncorrectChars = new StringBuffer();
         this.setBackground(Color.WHITE);
     }
 
@@ -39,6 +43,10 @@ public class HangmanCanvas extends Canvas {
         g.drawLine(scaffold_top.x, scaffold_top.y, scaffold_top.x, scaffold_top.y + SCAFFOLD_HEIGHT);
         g.drawLine(scaffold_top.x, scaffold_top.y, scaffold_top.x + BEAM_LENGTH, scaffold_top.y);
         g.drawLine(rope_top.x, rope_top.y, rope_end.x, rope_end.y);
+        g.drawString("The Word", 70, 420);
+        g.drawString(this.guessedWord, 80, 435);
+        g.drawString("Incorrect Guesses", 220, 420);
+        g.drawString(this.stringOfIncorrectChars.toString(), 230, 435);
         if (this.hangmanStep >= 1)
         {
             // Head
@@ -97,7 +105,8 @@ public class HangmanCanvas extends Canvas {
      * unguessed letters are indicated by hyphens.
      */
     public void displayWord(String word) {
-        /* You fill this in */
+        this.guessedWord = new String(word);
+        this.repaint();
     }
 
     /**
@@ -107,7 +116,8 @@ public class HangmanCanvas extends Canvas {
      * window.
      */
     public void noteIncorrectGuess(char letter) {
-        /* You fill this in */
+        this.stringOfIncorrectChars.append(letter);
+        this.repaint();
     }
 
     // Hangman points

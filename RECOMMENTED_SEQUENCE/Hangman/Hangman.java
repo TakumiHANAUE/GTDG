@@ -138,17 +138,23 @@ public class Hangman {
     private void showTheWord(String word, boolean[] isOpenedChar)
     {
         this.hangmanConsole.outputString(String.format("The word now looks like this: "));
+        StringBuffer wordBuf = new StringBuffer();
         for (int i = 0; i < word.length(); i++)
         {
             if ( isOpenedChar[i] == false )
             {
+                wordBuf.append("-");
                 this.hangmanConsole.outputString(String.format("-"));
             }
             else
             {
+                wordBuf.append(word.charAt(i));
                 this.hangmanConsole.outputString(String.format("%c", word.charAt(i)));
             }
         }
+        wordBuf.append("\n");
+        // System.out.print(wordBuf);
+        hangmanCanvas.displayWord(wordBuf.toString());
         this.hangmanConsole.outputString("\n");
     }
 
@@ -221,6 +227,7 @@ public class Hangman {
             this.hangmanConsole.outputString(String.format("There are no %c's in the word.\n", guessedLetter));
             this.guessNumLeft--;
             hangmanCanvas.nextHangmanStep();
+            hangmanCanvas.noteIncorrectGuess(guessedLetter);
         }
         else
         {
